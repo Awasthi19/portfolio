@@ -1,15 +1,15 @@
-"use client"
 
-import type React from "react"
+"use client";
 
-import { useState } from "react"
-import { Mail, Send, Phone, MapPin } from "lucide-react"
-import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Label } from "@/components/ui/label"
-import SectionHeading from "@/components/section-heading"
+import type React from "react";
+import { useState } from "react";
+import { Mail, Send, Phone, MapPin } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import SectionHeading from "@/components/section-heading";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -17,33 +17,45 @@ export default function Contact() {
     email: "",
     subject: "",
     message: "",
-  })
+  });
 
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitStatus, setSubmitStatus] = useState<null | "success" | "error">(null)
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<null | "success" | "error">(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
+    e.preventDefault();
+    setIsSubmitting(true);
 
-    // Simulate form submission
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1500))
-      setSubmitStatus("success")
-      setFormData({ name: "", email: "", subject: "", message: "" })
+      const formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSeTYSw5eJu4vZPUv7sUe_toNtRDAUHQzasDmri7tDahKQfZ2w/formResponse";
+      const formDataToSend = new FormData();
+      formDataToSend.append("entry.1222978686", formData.name); // Replace with actual entry ID for Name
+      formDataToSend.append("entry.1269650341", formData.email); // Replace with actual entry ID for Email
+      formDataToSend.append("entry.1960365084", formData.subject); // Replace with actual entry ID for Subject
+      formDataToSend.append("entry.2034277300", formData.message); // Replace with actual entry ID for Message
+
+      const response = await fetch(formUrl, {
+        method: "POST",
+        body: formDataToSend,
+        mode: "no-cors", // Required for Google Forms to avoid CORS issues
+      });
+
+      // Since mode is "no-cors", we can't check response.status, but submission should work
+      setSubmitStatus("success");
+      setFormData({ name: "", email: "", subject: "", message: "" });
     } catch (error) {
-      setSubmitStatus("error")
+      setSubmitStatus("error");
+      console.error("Form submission error:", error);
     } finally {
-      setIsSubmitting(false)
-      // Reset status after 5 seconds
-      setTimeout(() => setSubmitStatus(null), 5000)
+      setIsSubmitting(false);
+      setTimeout(() => setSubmitStatus(null), 5000);
     }
-  }
+  };
 
   return (
     <section id="contact" className="pt-20 -mt-20">
@@ -213,5 +225,5 @@ export default function Contact() {
         </div>
       </div>
     </section>
-  )
+  );
 }
