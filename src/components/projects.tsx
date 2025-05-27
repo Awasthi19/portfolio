@@ -6,6 +6,22 @@ import SectionHeading from "@/components/section-heading"
 export default function Projects() {
   const projects = [
     {
+      title: "PLANT GO",
+      subtitle: "AR‑Powered Plant Identification Game built with Go",
+      description: [
+        "Designed an augmented‑reality scavenger hunt where players identify real‑world plants to earn rewards, guided by an in‑game AR assistant.",
+        "Implemented a high‑performance backend in Go using Gorilla/Mux and gRPC for real‑time gameplay services and concurrency handling.",
+        "Integrated a TensorFlow‑serving CNN model to classify plants from camera frames sent by the mobile client.",
+        "Developed core gameplay loops mirroring the use‑case diagram: start game, view map, get hints, open camera, process image, receive response, and reward distribution.",
+        "Containerised the stack with Docker and deployed on Kubernetes; used PostgreSQL for persistence and Redis for session state caching.",
+      ],
+      technologies: ["Go", "gRPC", "PostgreSQL", "TensorFlow", "Docker", "Kubernetes", "ARCore/ARKit"],
+      links: {
+        github: "#",
+        live: "#",
+      },
+    },
+    {
       title: "BIJULI WORKSPACE",
       subtitle: "Cloud Utility Software for Electricity Offices",
       description: [
@@ -26,7 +42,7 @@ export default function Projects() {
       description: [
         "Developed the backend using Python and Django for efficient recognition and detection.",
         "Built an emotion detection AI model based on CNN architecture.",
-        "Implemented features for real-time detection and attendance systems.",
+        "Implemented features for real‑time detection and attendance systems.",
       ],
       technologies: ["Python", "Django", "CNN", "Machine Learning", "TensorFlow"],
       links: {
