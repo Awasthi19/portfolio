@@ -1,40 +1,72 @@
-import { Code, Database, Server, Layout, Cpu, Lightbulb } from "lucide-react"
-import { Card, CardContent } from "@/components/ui/card"
-import SectionHeading from "@/components/section-heading"
+import { Code, Database, Server, Layout, Cpu, Lightbulb } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import SectionHeading from "@/components/section-heading";
 
 export default function Skills() {
   const skillCategories = [
     {
       title: "Backend Development",
       icon: <Server className="h-6 w-6 text-red-500" />,
-      skills: ["Java", "Spring Boot", "Python", "FastAPI", "Django REST"],
+      skills: [
+        "Java",
+        "Spring Boot",
+        "Python",
+        "FastAPI",
+        "Django REST",
+        "Go", // ✅ Added
+        "gRPC", // ✅ Added
+        "Gorilla/Mux", // ✅ Added
+      ],
     },
     {
       title: "Frontend Development",
       icon: <Layout className="h-6 w-6 text-red-500" />,
-      skills: ["TypeScript", "JavaScript", "CSS", "Next.js", "Electron"],
+      skills: [
+        "TypeScript",
+        "JavaScript",
+        "CSS",
+        "Next.js",
+        "Electron",
+        "ARCore/ARKit", // ✅ Added (since it's used for AR frontend interaction)
+      ],
     },
     {
       title: "Database",
       icon: <Database className="h-6 w-6 text-red-500" />,
-      skills: ["PostgreSQL", "MongoDB", "SQLite"],
+      skills: [
+        "PostgreSQL",
+        "MongoDB",
+        "SQLite",
+        "Redis", // ✅ Added (used for session state)
+      ],
     },
     {
       title: "Programming",
       icon: <Code className="h-6 w-6 text-red-500" />,
-      skills: ["C/C++", "Object-Oriented Programming", "Data Structures and Algorithms"],
+      skills: [
+        "C/C++",
+        "Go", // ✅ Already added under backend, okay to show again
+        "Object-Oriented Programming",
+        "Data Structures and Algorithms",
+      ],
     },
     {
       title: "Systems",
       icon: <Cpu className="h-6 w-6 text-red-500" />,
-      skills: ["Operating Systems", "Computer Networks", "Computer Architecture", "Microprocessor"],
+      skills: [
+        "Operating Systems",
+        "Computer Networks",
+        "Computer Architecture",
+        "Microprocessor",
+        "Docker", // ✅ Added
+      ],
     },
     {
       title: "Familiar With",
       icon: <Lightbulb className="h-6 w-6 text-red-500" />,
       skills: ["Machine Learning", "TensorFlow", "CNN"],
     },
-  ]
+  ];
 
   return (
     <section id="skills" className="pt-20 -mt-20 dots-pattern">
@@ -42,11 +74,16 @@ export default function Skills() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
         {skillCategories.map((category, index) => (
-          <Card key={index} className="overflow-hidden border-t-4 border-t-red-600 bg-gray-900/50 border-red-900/30">
+          <Card
+            key={index}
+            className="overflow-hidden border-t-4 border-t-red-600 bg-gray-900/50 border-red-900/30"
+          >
             <CardContent className="p-6">
               <div className="flex items-center mb-4">
                 {category.icon}
-                <h3 className="text-xl font-semibold ml-2 text-white">{category.title}</h3>
+                <h3 className="text-xl font-semibold ml-2 text-white">
+                  {category.title}
+                </h3>
               </div>
 
               <div className="flex flex-wrap gap-2">
@@ -64,5 +101,5 @@ export default function Skills() {
         ))}
       </div>
     </section>
-  )
+  );
 }
